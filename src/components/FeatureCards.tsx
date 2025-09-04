@@ -1,34 +1,33 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Camera, Sprout, DollarSign } from "lucide-react";
+import { useNavigate } from "react-router-dom";
 
 const FeatureCards = () => {
+  const navigate = useNavigate();
+
   const features = [
     {
       icon: Camera,
       title: "Crop Identification & Diagnosis",
       description: "Upload crop photos for AI-powered identification, disease detection, and treatment recommendations",
-      color: "text-primary"
+      color: "text-primary",
+      route: "/crop-identification"
     },
     {
       icon: Sprout,
       title: "Yield Improvement",
       description: "Get personalized recommendations based on your region's soil type and climate conditions",
-      color: "text-success"
+      color: "text-success",
+      route: "/yield-improvement"
     },
     {
       icon: DollarSign,
       title: "Cost Efficiency",
       description: "Analyze farming expenses and discover opportunities to reduce costs while maintaining quality",
-      color: "text-warning"
+      color: "text-warning",
+      route: "/cost-efficiency"
     }
   ];
-
-  const scrollToBottom = () => {
-    window.scrollTo({
-      top: document.body.scrollHeight,
-      behavior: 'smooth'
-    });
-  };
 
   return (
     <section className="py-20 bg-background">
@@ -44,7 +43,7 @@ const FeatureCards = () => {
 
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {features.map((feature, index) => (
-            <div key={index} onClick={scrollToBottom} className="group cursor-pointer">
+            <div key={index} onClick={() => navigate(feature.route)} className="group cursor-pointer">
               <Card className="feature-card h-full cursor-pointer bg-card border-border hover:border-primary/20">
                 <CardContent className="p-8 text-center h-full flex flex-col">
                   <div className="mb-6">
