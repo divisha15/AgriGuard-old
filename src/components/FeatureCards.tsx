@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Camera, Sprout, DollarSign } from "lucide-react";
 
@@ -8,24 +7,28 @@ const FeatureCards = () => {
       icon: Camera,
       title: "Crop Identification & Diagnosis",
       description: "Upload crop photos for AI-powered identification, disease detection, and treatment recommendations",
-      path: "/crop-identification",
       color: "text-primary"
     },
     {
       icon: Sprout,
       title: "Yield Improvement",
       description: "Get personalized recommendations based on your region's soil type and climate conditions",
-      path: "/yield-improvement", 
       color: "text-success"
     },
     {
       icon: DollarSign,
       title: "Cost Efficiency",
       description: "Analyze farming expenses and discover opportunities to reduce costs while maintaining quality",
-      path: "/cost-efficiency",
       color: "text-warning"
     }
   ];
+
+  const scrollToBottom = () => {
+    window.scrollTo({
+      top: document.body.scrollHeight,
+      behavior: 'smooth'
+    });
+  };
 
   return (
     <section className="py-20 bg-background">
@@ -41,7 +44,7 @@ const FeatureCards = () => {
 
         <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {features.map((feature, index) => (
-            <Link key={index} to={feature.path} className="group">
+            <div key={index} onClick={scrollToBottom} className="group cursor-pointer">
               <Card className="feature-card h-full cursor-pointer bg-card border-border hover:border-primary/20">
                 <CardContent className="p-8 text-center h-full flex flex-col">
                   <div className="mb-6">
@@ -65,7 +68,7 @@ const FeatureCards = () => {
                   </div>
                 </CardContent>
               </Card>
-            </Link>
+            </div>
           ))}
         </div>
       </div>

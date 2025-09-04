@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
+import { Input } from "@/components/ui/input";
 import { Sprout, MapPin, Droplets, Leaf } from "lucide-react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -9,6 +10,41 @@ import Footer from "@/components/Footer";
 const YieldImprovement = () => {
   const [selectedRegion, setSelectedRegion] = useState<string>("");
   const [selectedCrop, setSelectedCrop] = useState<string>("");
+  const [selectedSeason, setSelectedSeason] = useState<string>("");
+  const [farmArea, setFarmArea] = useState<string>("");
+  const [selectedState, setSelectedState] = useState<string>("");
+  const [selectedDistrict, setSelectedDistrict] = useState<string>("");
+
+  const seasons = [
+    { value: "rabi", label: "Rabi Season (Winter Crop)" },
+    { value: "kharif", label: "Kharif Season (Monsoon Crop)" },
+    { value: "all_season", label: "All Season" }
+  ];
+
+  const states = [
+    "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh", "Goa", "Gujarat", 
+    "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka", "Kerala", "Madhya Pradesh", 
+    "Maharashtra", "Manipur", "Meghalaya", "Mizoram", "Nagaland", "Odisha", "Punjab", 
+    "Rajasthan", "Sikkim", "Tamil Nadu", "Telangana", "Tripura", "Uttar Pradesh", 
+    "Uttarakhand", "West Bengal", "Delhi", "Jammu and Kashmir", "Ladakh"
+  ];
+
+  const districts = [
+    "Ahmedabad", "Bengaluru Urban", "Chennai", "Delhi", "Hyderabad", "Kolkata", "Mumbai City", 
+    "Pune", "Agra", "Allahabad", "Amritsar", "Aurangabad", "Bareilly", "Bhopal", "Coimbatore", 
+    "Dhanbad", "Faridabad", "Ghaziabad", "Gurgaon", "Gwalior", "Hubli-Dharwad", "Indore", 
+    "Jabalpur", "Jaipur", "Jalandhar", "Jammu", "Jamshedpur", "Jodhpur", "Kanpur", "Kochi", 
+    "Kota", "Lucknow", "Ludhiana", "Madurai", "Meerut", "Moradabad", "Mysore", "Nagpur", 
+    "Nashik", "Patna", "Rajkot", "Ranchi", "Salem", "Solapur", "Srinagar", "Surat", 
+    "Thiruvananthapuram", "Tiruchirappalli", "Udaipur", "Vadodara", "Varanasi", "Vijayawada", 
+    "Visakhapatnam", "Warangal", "Ahmednagar", "Akola", "Aligarh", "Anantapur", "Bellary", 
+    "Bhavnagar", "Bikaner", "Bilaspur", "Chittoor", "Cuddalore", "Cuttack", "Darbhanga", 
+    "Davangere", "Erode", "Gandhinagar", "Gulbarga", "Guntur", "Hassan", "Hisar", "Hospet", 
+    "Howrah", "Jalgaon", "Jalna", "Karimnagar", "Khammam", "Kolhapur", "Kurnool", "Latur", 
+    "Mangalore", "Nanded", "Nizamabad", "Parbhani", "Puducherry", "Raichur", "Raipur", 
+    "Rajahmundry", "Sambalpur", "Sangli", "Satara", "Shimoga", "Siliguri", "Tirunelveli", 
+    "Tumkur", "Ujjain", "Vellore", "Vizianagaram"
+  ];
 
   const regions = [
     {
@@ -94,6 +130,79 @@ const YieldImprovement = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-6">
+                  {/* Season Selection */}
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-2">
+                      Select Season
+                    </label>
+                    <Select value={selectedSeason} onValueChange={setSelectedSeason}>
+                      <SelectTrigger className="w-full">
+                        <SelectValue placeholder="Choose farming season" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {seasons.map((season) => (
+                          <SelectItem key={season.value} value={season.value}>
+                            {season.label}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  {/* Farm Area Input */}
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-2">
+                      Area of Farm (in hectares)
+                    </label>
+                    <Input
+                      type="number"
+                      placeholder="Enter farm area in hectares"
+                      value={farmArea}
+                      onChange={(e) => setFarmArea(e.target.value)}
+                      className="w-full"
+                      min="0"
+                      step="0.1"
+                    />
+                  </div>
+
+                  {/* State Selection */}
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-2">
+                      Select State
+                    </label>
+                    <Select value={selectedState} onValueChange={setSelectedState}>
+                      <SelectTrigger className="w-full">
+                        <SelectValue placeholder="Choose your state" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {states.map((state) => (
+                          <SelectItem key={state} value={state}>
+                            {state}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+
+                  {/* District Selection */}
+                  <div>
+                    <label className="block text-sm font-medium text-foreground mb-2">
+                      Select District
+                    </label>
+                    <Select value={selectedDistrict} onValueChange={setSelectedDistrict}>
+                      <SelectTrigger className="w-full">
+                        <SelectValue placeholder="Choose your district" />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {districts.map((district) => (
+                          <SelectItem key={district} value={district}>
+                            {district}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+
                   {/* Region Selection */}
                   <div>
                     <label className="block text-sm font-medium text-foreground mb-2">
@@ -154,7 +263,7 @@ const YieldImprovement = () => {
 
                   <Button 
                     className="w-full bg-gradient-primary hover:shadow-glow-green transition-smooth"
-                    disabled={!selectedRegion || !selectedCrop}
+                    disabled={!selectedRegion || !selectedCrop || !selectedSeason || !farmArea || !selectedState || !selectedDistrict}
                   >
                     Get Yield Improvement Suggestions
                   </Button>

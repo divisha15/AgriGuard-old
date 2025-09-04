@@ -1,11 +1,19 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Card } from "@/components/ui/card";
+import cropBackground from "@/assets/crop-background.jpg";
 
 const Hero = () => {
   return (
-    <section className="min-h-screen bg-gradient-subtle py-20">
-      <div className="container mx-auto px-4 text-center">
+    <section className="min-h-screen relative py-20 overflow-hidden">
+      {/* Background Image */}
+      <div 
+        className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+        style={{ backgroundImage: `url(${cropBackground})` }}
+      />
+      {/* Overlay */}
+      <div className="absolute inset-0 bg-gradient-to-br from-primary/20 via-background/60 to-background/80" />
+      <div className="container mx-auto px-4 text-center relative z-10">
         {/* Main Hero Content */}
         <div className="max-w-4xl mx-auto mb-16">
           <h1 className="text-5xl md:text-6xl font-bold mb-6 text-foreground">
@@ -20,31 +28,31 @@ const Hero = () => {
         </div>
 
         {/* Demo Credentials Card */}
-        <Card className="max-w-md mx-auto p-8 shadow-card mb-8 bg-card">
+        <Card className="max-w-md mx-auto p-8 shadow-card mb-8 bg-card/90 backdrop-blur-sm border-2 border-primary/10">
           <h3 className="text-xl font-semibold mb-6 text-foreground">Try AgriGuard Now</h3>
           
-          {/* Demo Credentials Display */}
-          <div className="bg-muted rounded-lg p-4 mb-6 text-left">
-            <p className="text-sm text-muted-foreground mb-2">Demo Credentials:</p>
-            <p className="font-mono text-sm"><strong>Email:</strong> abc@gmail.com</p>
-            <p className="font-mono text-sm"><strong>Password:</strong> 1234</p>
+          {/* Demo Credentials Display - Lighter Theme */}
+          <div className="bg-secondary/30 rounded-lg p-4 mb-6 text-left border border-warning/20">
+            <p className="text-sm text-accent-foreground/70 mb-2 font-medium">Demo Credentials:</p>
+            <p className="font-mono text-sm text-muted-foreground"><strong className="text-accent-foreground">Email:</strong> abc@gmail.com</p>
+            <p className="font-mono text-sm text-muted-foreground"><strong className="text-accent-foreground">Password:</strong> 1234</p>
           </div>
 
-          {/* Login Form */}
+          {/* Login Form - Bold Input Boxes */}
           <div className="space-y-4">
             <Input 
               type="email" 
               placeholder="Enter email address"
               defaultValue="abc@gmail.com"
-              className="bg-input"
+              className="bg-card border-2 border-primary/30 font-semibold text-foreground focus:border-primary focus:ring-2 focus:ring-primary/20"
             />
             <Input 
               type="password" 
               placeholder="Enter password"
               defaultValue="1234"
-              className="bg-input"
+              className="bg-card border-2 border-primary/30 font-semibold text-foreground focus:border-primary focus:ring-2 focus:ring-primary/20"
             />
-            <Button className="w-full bg-gradient-primary hover:shadow-glow-green transition-smooth text-lg py-6">
+            <Button className="w-full bg-gradient-primary hover:shadow-glow-green transition-smooth text-lg py-6 font-bold">
               Sign Up & Get Started
             </Button>
           </div>
