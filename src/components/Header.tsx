@@ -1,6 +1,5 @@
 import { Link } from "react-router-dom";
 import { Button } from "@/components/ui/button";
-import { Sprout } from "lucide-react";
 
 const Header = () => {
   return (
@@ -9,8 +8,8 @@ const Header = () => {
         <div className="flex items-center justify-between">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-2 group">
-            <div className="p-2 bg-gradient-primary rounded-xl shadow-glow-green group-hover:shadow-glow-green transition-smooth">
-              <Sprout className="h-6 w-6 text-white" />
+            <div className="p-1 rounded-xl group-hover:shadow-glow-green transition-smooth">
+              <img src="/lovable-uploads/0f4475e5-d273-4c65-8658-eddcde9bfedb.png" alt="AgriGuard Logo" className="h-10 w-10" />
             </div>
             <div>
               <h1 className="text-2xl font-bold text-primary">AgriGuard</h1>

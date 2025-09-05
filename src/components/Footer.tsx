@@ -74,7 +74,7 @@ const Footer = () => {
         {/* Bottom Bar */}
         <div className="border-t border-gray-700 pt-6 mt-8 text-center">
           <p className="text-gray-300 mb-2">
-            Smart India Hackathon 2025 – Government of Odisha, Electronics & IT Department
+            Team AgriGuard, Smart India Hackathon, 2025
           </p>
           <p className="text-sm text-gray-400">
             © 2025 AgriGuard. All rights reserved. Built with ❤️ for Indian farmers.
